@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.3.RELEASE'
+		springBootVersion = '1.5.4.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -23,7 +23,18 @@ repositories {
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-mail')
-	compile('org.springframework.boot:spring-boot-starter-web')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile 'org.springframework.boot:spring-boot-starter-actuator',
+	        'org.springframework.boot:spring-boot-starter-mail',
+            'org.springframework.boot:spring-boot-starter-web',
+            
+            'org.springframework.cloud:spring-cloud-starter-sleuth',
+            'org.springframework.cloud:spring-cloud-starter-zipkin'
+            
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Dalston.RELEASE"
+	}
 }
